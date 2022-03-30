@@ -1,3 +1,5 @@
+/* GENERAL STYLES */
+
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +20,7 @@
     --color-grey-5: #2a2e35;
     --color-grey-6: #12181b;
     --transition-1: all 0.4s ease-in-out;
-    --box-shadow-1: 0 3px 15px rgba(0, 0, 0, .3);
+    --box-shadow-1: 0 3px 15px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -35,6 +37,12 @@ a {
     color: inherit;
     font-family: inherit;
 }
+
+
+/* END GENERAL STYLES */
+
+
+/* SECTIONS */
 
 header {
     height: 100vh;
@@ -87,6 +95,25 @@ section {
     background-color: rgb(65, 61, 78);
 }
 
+.active {
+    display: block;
+    animation: scaleAnim 1s ease-in-out;
+    @keyframes scaleAnim {
+        0% {
+            transform: translateY(-100%) scale(0);
+        }
+        100% {
+            transform: translateY(0) scaleY(1);
+        }
+    }
+}
+
+
+/* END SECTIONS */
+
+
+/* CONTROLS */
+
 .controls {
     position: fixed;
     z-index: 10;
@@ -101,7 +128,7 @@ section {
         background-color: var(--color-secondary) !important;
         transition: var(--transition-1);
         i {
-            color: var(--color-white)!important;
+            color: var(--color-white) !important;
         }
     }
     .control {
@@ -114,7 +141,7 @@ section {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: .7rem 0;
+        margin: 0.7rem 0;
         box-shadow: var(--box-shadow-1);
         i {
             font-size: 1.2rem;
@@ -123,3 +150,113 @@ section {
         }
     }
 }
+
+
+/* END CONTROLS */
+
+
+/* HEADER CONTENT */
+
+.header-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+    .left-header {
+        display: flex;
+        align-items: center;
+        position: relative;
+        .h-shape {
+            transition: var(--transition-1);
+            width: 65%;
+            height: 100%;
+            background-color: var(--color-secondary);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            clip-path: polygon(0 0, 46% 0, 79% 100%, 0% 100%);
+        }
+        .image {
+            border-radius: 14px;
+            height: 85%;
+            width: 68%;
+            margin-left: 4rem;
+            background-color: var(--color-black);
+            transition: var(--transition-1);
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: var(--transition-1);
+                filter: grayscale(100%);
+                &:hover {
+                    filter: grayscale(0);
+                }
+            }
+        }
+    }
+    .right-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 18rem;
+        .name {
+            font-size: 3rem;
+            span {
+                color: var(--color-secondary);
+            }
+        }
+        p {
+            margin: 1.5rem 0;
+            line-height: 2rem;
+        }
+    }
+}
+
+.btn-con {
+    display: flex;
+    align-self: flex-start;
+}
+
+.main-btn {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    border-radius: 30px;
+    color: inherit;
+    font-weight: 600;
+    position: relative;
+    border: 1px solid var(--color-secondary);
+    overflow: hidden;
+    .btn-text {
+        padding: 0 2rem;
+    }
+    .btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-secondary);
+        border-radius: 50%;
+        padding: 1rem;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(100%);
+        transition: var(--transition-1);
+        z-index: -1;
+    }
+    &:hover {
+        &::before {
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-secondary);
+            transform: translateX(0);
+        }
+    }
+}
+
+
+/* END HEADER CONTENT */
